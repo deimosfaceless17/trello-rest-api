@@ -21,6 +21,9 @@ $ php artisan key:generate
 
 Then set environment in file `.env` like in casual Laravel project.
 
+Type this to generate token for JWT
+`$ php artisan jwt:secret`
+
 ## Target
 
 Your task is to develop a REST API task application (like Trello).
