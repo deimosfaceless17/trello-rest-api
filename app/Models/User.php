@@ -17,6 +17,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string $email
  * @property string $password
  * @property-read Collection|Board[] $boards
+ * @property-read Collection|Task[] $tasks
  */
 class User extends Authenticatable implements JWTSubject
 {
@@ -72,8 +73,16 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function boards()
     {
         return $this->hasMany(Board::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasManyThrough(Task::class, Board::class);
     }
 }

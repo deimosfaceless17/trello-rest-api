@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -25,8 +26,15 @@ Route::group(
 });
 
 Route::group(
-    ['middleware' => 'api', 'prefix' => 'board'], function($router) {
+    ['middleware' => 'auth:api', 'prefix' => 'board'], function($router) {
     Route::get('/', [BoardController::class, 'index']);
     Route::post('/', [BoardController::class, 'create']);
     Route::patch('/{id}', [BoardController::class, 'update'])->where('id', '[0-9]+');
+});
+
+Route::group(
+    ['middleware' => 'auth:api', 'prefix' => 'task'], function($router) {
+    Route::get('/', [TaskController::class, 'index']);
+    Route::post('/', [TaskController::class, 'create']);
+    Route::patch('/{id}', [TaskController::class, 'update'])->where('id', '[0-9]+');
 });
