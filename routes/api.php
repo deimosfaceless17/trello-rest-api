@@ -34,7 +34,7 @@ Route::group(
 
 Route::group(
     ['middleware' => 'auth:api', 'prefix' => 'task'], function($router) {
-    Route::get('/', [TaskController::class, 'index']);
+    Route::get('/{statuses?}', [TaskController::class, 'index']);
     Route::post('/', [TaskController::class, 'create']);
     Route::patch('/{id}', [TaskController::class, 'update'])->where('id', '[0-9]+');
 });
