@@ -28,4 +28,5 @@ Route::group(
     ['middleware' => 'api', 'prefix' => 'board'], function($router) {
     Route::get('/', [BoardController::class, 'index']);
     Route::post('/', [BoardController::class, 'create']);
+    Route::patch('/{id}', [BoardController::class, 'update'])->where('id', '[0-9]+');
 });
