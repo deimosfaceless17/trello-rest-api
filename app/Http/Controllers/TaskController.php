@@ -7,6 +7,7 @@ use App\Http\Resources\Task as TaskResource;
 use App\Http\Resources\Tasks;
 use App\Jobs\CropImage;
 use App\Models\Task;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
@@ -39,5 +40,18 @@ class TaskController extends Controller
         }
 
         return new TaskResource($task);
+    }
+
+    public function delete(int $id)
+    {
+        $task = Task::findOrFail($id);
+
+        if (Auth::user()->cant('delete', $task)) {
+            return response()->json(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
+        }
+
+        $task->delete();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

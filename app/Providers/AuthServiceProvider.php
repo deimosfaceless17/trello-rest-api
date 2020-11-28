@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Board;
+use App\Models\Task;
 use App\Policies\BoardPolicy;
+use App\Policies\TaskPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -16,6 +18,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
          Board::class => BoardPolicy::class,
+         Task::class => TaskPolicy::class,
     ];
 
     /**

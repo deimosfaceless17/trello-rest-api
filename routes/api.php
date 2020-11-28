@@ -37,4 +37,5 @@ Route::group(
     Route::get('/{statuses?}', [TaskController::class, 'index']);
     Route::post('/', [TaskController::class, 'create']);
     Route::patch('/{id}', [TaskController::class, 'update'])->where('id', '[0-9]+');
+    Route::delete('/{id}', [TaskController::class, 'delete'])->where('id', '[0-9]+');
 });
