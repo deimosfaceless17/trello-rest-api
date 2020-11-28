@@ -9,7 +9,8 @@ class Task extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     public function toArray($request)
@@ -19,6 +20,10 @@ class Task extends JsonResource
             'name' => $this->name,
             'status' => $this->status,
             'board_id' => $this->board_id,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'desktop_image' => new Image($this->desktopImage),
+            'mobile_image' => new Image($this->mobileImage),
         ];
     }
 }

@@ -9,7 +9,7 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'status', 'board_id'];
+    protected $fillable = ['name', 'status', 'board_id', 'desktop_image_id', 'mobile_image_id'];
 
     public const STATUS_BACKLOG = 'backlog';
     public const STATUS_DEVELOPMENT = 'development';
@@ -22,4 +22,14 @@ class Task extends Model
         self::STATUS_DONE,
         self::STATUS_REVIEW,
     ];
+
+    public function mobileImage()
+    {
+        return $this->belongsTo(Image::class, 'mobile_image_id');
+    }
+
+    public function desktopImage()
+    {
+        return $this->belongsTo(Image::class, 'desktop_image_id');
+    }
 }
